@@ -12,7 +12,7 @@ let computerScore = 0;
 btnChoice.forEach(button => button.addEventListener('click', () => {
     playerChoice = button.textContent;
     getComputerChoice();
-    resultText.textContent = checkWinner();
+    resultText.textContent = playRound();
     if (resultText.textContent == "You Win!") {
         yourScore++;
     } else if (resultText.textContent == "You Lose!") {
@@ -20,6 +20,15 @@ btnChoice.forEach(button => button.addEventListener('click', () => {
     }
     playerText.textContent = `Player: ${playerChoice} ${yourScore}`;
     computerText.textContent = `Computer: ${computerChoice} ${computerScore}`;
+    if (yourScore == 5) {
+        playerText.textContent = "You are the Winner!";
+        yourScore = 0;
+        computerScore = 0;
+    } else if (computerScore == 5){
+        computerText.textContent = "Computer is the Winner!";
+        yourScore = 0;
+        computerScore = 0;
+    }
 }));
 
 function getComputerChoice () {
@@ -37,7 +46,7 @@ function getComputerChoice () {
     }
 }   
 
-function checkWinner() {
+function playRound() {
 
     if (playerChoice == computerChoice) {
         return "Draw!";
